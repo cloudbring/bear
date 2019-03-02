@@ -4,8 +4,13 @@ import * as express from 'express'
 //import * as cors from 'cors'
 //import * as bodyParser from 'body-parser'
 
+const defaults = {
+    _port: 4001
+}
+
 const app = express()
-const port = 4001
+app.set("port", process.env.BEAR_APP_PORT || defaults._port)
+
 
 //app.use(bodyParser.json())
 //app.use(bodyParser.urlencoded({ extended: true }))
@@ -13,8 +18,12 @@ const port = 4001
 
 app.get('/', (req, res, next) => {
     res.json('Hello world')
+    console.log('Hello Console World')
 })
 
-app.listen(port, () => {
-    console.log(`App is listening on port ${port}`)
+app.listen(app.get("port"), (p) => {
+    console.log(`App is listening on port ${app.get("port")}`)
 })
+
+// Export our app
+export default app;

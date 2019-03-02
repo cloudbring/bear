@@ -5,7 +5,8 @@ services:
     image: bear
     build: .
     environment:
-      NODE_ENV: development
+      DEBUG: 'true'
+      NODE_ENV: 'development'
     ports:
       - 3000:3000
       - 9229:9229
